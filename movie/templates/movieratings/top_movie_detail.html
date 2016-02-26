@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ obj.title }}{% endblock title %}
+
+{% block content %}
+<div class="container">
+	<h2>{{ movie.title }}</h2>
+	<p>Rating: {{ top20 }}</p>
+
+	{% for reviewer in reviewers %}
+		<p>User: {{ reviewer.reviewer_id }} : {{ reviewer.rating }}</p>
+	{% endfor %}
+</h2>
+{% endblock %}

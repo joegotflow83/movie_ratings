@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Top 20{% endblock title %}
+
+{% block content %}
+<div class="container">
+	<h2>Top 20</h2>
+	{% for popular_movie in popular_movies %}
+		<a href="{% url 'top_twenty_detail' popular_movie.movie.id %}">{{ popular_movie.movie.title | linebreaks }}
+		</a>
+	{% endfor %}
+</div>
+{{ average }}
+{% endblock %}
