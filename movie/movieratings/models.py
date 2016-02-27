@@ -49,15 +49,15 @@ class Movie(models.Model):
 class Review(models.Model):
 
 
-        reviewer = models.ForeignKey(Rater)
-        movie = models.ForeignKey(Movie)
-        rating = models.IntegerField()
-        timestamp = models.IntegerField()
+    reviewer = models.ForeignKey(Rater)
+    movie = models.ForeignKey(Movie)
+    rating = models.IntegerField()
+    timestamp = models.IntegerField()
 
-        def __str__(self):
-                return '{} {} {} {} {}'.format(self.id, self.reviewer,
-                                                                           self.movie, self.rating,
-                                                                           self.timestamp)
+    def __str__(self):
+        return '{} {} {} {} {}'.format(self.id, self.reviewer,
+                                        self.movie, self.rating,
+                                        self.timestamp)
 
 
 class Post(models.Model):

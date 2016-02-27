@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_list_or_404, redirect
+from django.shortcuts import render, get_list_or_404, get_object_or_404, redirect
 from django.views.generic import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -30,7 +30,7 @@ class MovieDetail(View):
 
     def get(self, request, pk):
         """Display the movie in detail if clicked on"""
-        reviewers = get_list_or_404(Review, movie_id=pk)
+        reviewers = get_list_or_404(Review, movie=pk)
         posters = Post.objects.all()
         movie = Movie.objects.get(id=pk)
         average = Review.objects.filter(movie_id=pk).aggregate(Avg('rating'))
@@ -43,16 +43,16 @@ class MovieDetail(View):
                     'form': form})
 
 
-class UserDetail(DetailView):
+class UserDetail(View):
 
 
-	queryset = Rater.objects.all()
-	template_name = 'movieratings/user_detail.html'
-	
-	def get_object(self):
-		"""Display the user data when clicked on"""
-		object = super().get_object()
-		return object
+    def get(self, request, pk):
+        """Display the users info along with other movies they have rated"""
+        info = get_object_or_404(Rater, id=pk)
+        movies = get_list_or_404(Review, reviewer=pk)
+        print(movies)
+        return render(request, 'movieratings/user_detail.html', {'info': info,
+                                                                 'movies': movies})
 
 
 class MovieList(ListView):

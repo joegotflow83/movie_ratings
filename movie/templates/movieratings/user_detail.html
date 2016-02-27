@@ -5,13 +5,19 @@
 {% block content %}
 
 <div class="container">
+	<div class="col-md-4">
 	<h2>User:</h2>
-	<div>User ID: {{ object.id }}</div>
-	<div>Age: {{ object.age }}</div>
-	<div>Occupation: {{ object.occupation }}</div>
-	<div>Zip Code: {{ object.zip_code }}</div>
+	<div>User ID: {{ info }}</div>
+	<div>Age: {{ info.age }}</div>
+	<div>Sex: {{ info.gender }}
+	<div>Occupation: {{ info.occupation }}</div>
+	<div>Zip Code: {{ info.zip_code }}</div>
 	<br>
-	<p>Go back to the movies list? Click <a href="/movies/">here</a>
+	{% for movie in movies %}
+		<p><a href="{% url 'movie_detail' movie.movie_id %}">{{ movie.movie.title }}</a> Rating: {{ movie.movie.rating_average }}</p>
+	{% endfor %}
+	<p>Go back to the movies list? Click <a href="{% url 'movie_list' %}">here</a></p>
+	</div>
 </div>
 
 {% endblock %}
