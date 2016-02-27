@@ -5,9 +5,8 @@
 {% block content %}
 <div class="container">
 	<h2>Top 20</h2>
-	{% for popular_movie in popular_movies %}
-		<a href="{% url 'top_twenty_detail' popular_movie.movie.id %}">{{ popular_movie.movie.title | linebreaks }}
-		</a>
+	{% for movie in top20 %}
+		<a href="{% url 'top_twenty_detail' movie_ids.id %}">{{ movie | linebreaks }}</a>
 	{% endfor %}
 </div>
 {{ average }}
