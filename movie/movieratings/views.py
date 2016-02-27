@@ -3,7 +3,6 @@ from django.views.generic import View
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.db.models import Avg
-import operator
 
 from .models import Review, Movie, Rater
 
@@ -12,18 +11,9 @@ class IndexView(View):
 
 
 	def get(self, request):
-		"""Grab top 20 movies with the highest ratings"""
-		'''average_list = []
-		for movie in Movie.objects.all():
-			average_list.append((movie.title, (Review.objects.filter(movie=movie).aggregate(Avg('rating')))))
-		ratings = []
-		for rating in ratings:
-			ratings.append((rating[0], rating[1]['rating__avg']))
-		top_twenty = sorted(ratings, key=operator.itemgetter(1), reverse=True)[:20]
-		for index, number in enumerate(Movie.objects.all()):
-			if number.title == top_twenty[index]:'''
-		return render(request, 'movieratings/index.html', {})
-		#return render(request, 'movieratings/index.html', {'top20': top_twenty})
+		"""Display the top 20 movies"""
+		top_movies = Movie.objects.order_by('-rating_average')[:20]
+		return render(request, 'movieratings/index.html', {'top_movies': top_movies})
 
 
 class MovieDetail(View):
