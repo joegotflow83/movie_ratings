@@ -40,7 +40,7 @@ class Movie(models.Model):
         thriller = models.IntegerField()
         war = models.IntegerField()
         western = models.IntegerField()
-        rating_average = models.FloatField()
+        rating_average = models.DecimalField(max_digits=2, decimal_places=1, default=0)
 
         def __str__(self):
                 return self.title
@@ -58,3 +58,12 @@ class Review(models.Model):
                 return '{} {} {} {} {}'.format(self.id, self.reviewer,
                                                                            self.movie, self.rating,
                                                                            self.timestamp)
+
+
+class Post(models.Model):
+
+
+    first_name = models.CharField(max_length=32)
+    last_name = models.CharField(max_length=32)
+    rating = models.IntegerField()
+    post = models.CharField(max_length=512)
