@@ -5,10 +5,10 @@
 {% block content %}
 <div class="container">
 	<h2>{{ movie.title }}</h2>
-	<p>Rating: {{ top20 }}</p>
+	<p>Rating: {{ average }}</p>
 
 	{% for reviewer in reviewers %}
-		<p>User: {{ reviewer.reviewer_id }} : {{ reviewer.rating }}</p>
+		<p><a href="{% url 'user_detail' reviewer.reviewer_id %}">User: {{ reviewer.reviewer_id }}</a> : {{ reviewer.rating }}</p>
 	{% endfor %}
 </h2>
 {% endblock %}

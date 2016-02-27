@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.id }}{% endblock title %}
+
+{% block content %}
+
+<div class="container">
+	<h2>User:</h2>
+	<div>User ID: {{ object.id }}</div>
+	<div>Age: {{ object.age }}</div>
+	<div>Occupation: {{ object.occupation }}</div>
+	<div>Zip Code: {{ object.zip_code }}</div>
+	<br>
+	<p>Go back to the movies list? Click <a href="/movies/">here</a>
+</div>
+
+{% endblock %}

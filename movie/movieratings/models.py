@@ -42,10 +42,6 @@ class Movie(models.Model):
         war = models.IntegerField(default=0)
         western = models.IntegerField(default=0)
 
-        @property
-        def average(self):
-            return Review.objects.filter(movie=self).aggregate(Avg('rating'))['rating__avg']
-
         def __str__(self):
                 return self.title
 
@@ -57,6 +53,10 @@ class Review(models.Model):
         movie = models.ForeignKey(Movie)
         rating = models.IntegerField()
         timestamp = models.IntegerField()
+
+        @property
+        def average(self):
+            return Review.objects.filter(movie=self).aggregate(Avg('rating'))['rating__avg']
 
         def __str__(self):
                 return '{} {} {} {} {}'.format(self.id, self.reviewer,
