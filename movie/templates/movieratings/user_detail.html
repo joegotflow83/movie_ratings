@@ -14,7 +14,7 @@
 	<div>Zip Code: {{ info.zip_code }}</div>
 	<br>
 	{% for movie in movies %}
-		<p><a href="{% url 'movie_detail' movie.movie_id %}">{{ movie.movie.title }}</a> Rating: {{ movie.movie.rating_average }}</p>
+		<p><a href="{% url 'movie_detail' movie.movie_id %}">{{ movie.movie.title }}</a> Rating: {{ movie.rating }}</p>
 	{% endfor %}
 	<p>Go back to the movies list? Click <a href="{% url 'movie_list' %}">here</a></p>
 	</div>
